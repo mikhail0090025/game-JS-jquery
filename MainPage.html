@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="bootstrap full.css">
+    <script src="game/classes.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- REACT.JS -->
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+<body>
+    <header>
+        <span id="label_gold"></span>
+    </header>
+    <canvas width="800px" height="600px" class="border rounded border-primary" id="main_canvas"></canvas>
+    <div class="container-fluid">
+        <div id="GamePanel" class="col-sm-12 col-lg-6 col-md-6 col-xl-6">
+            <button id="shop_button">Shop</button>
+            <div id="GamePanel_" class="mt-3">
+
+            </div>
+        </div>
+    </div>
+    
+    <script src="game/game.js"></script>
+    <script>
+        // UI ANIMATION
+        // Shop button
+        $("#shop_button").attr("class", "btn btn-primary");
+        $("body").on("mouseenter", "#shop_button", function(){ $("#shop_button").attr("class", "btn btn-secondary"); });
+        $("body").on("mouseleave", "#shop_button", function(){ $("#shop_button").attr("class", "btn btn-primary"); });
+        // MAIN CANVAS
+        var cnv = $("#main_canvas");
+        $("body").on("click", "#main_canvas", function(event){
+            var canvasOffset = $(this).offset();
+            var X = GetCellNumber(event.pageX - canvasOffset.left, event.pageY - canvasOffset.top)[0];
+            var Y = GetCellNumber(event.pageX - canvasOffset.left, event.pageY - canvasOffset.top)[1];
+            alert(X + ", " + Y);
+        });
+        ///////////////
+        function RefreshUI() {
+            $("#label_gold").text("💰: " + game.Gold);
+        }
+        
+        RefreshUI();
+    </script>
+    <script type="text/babel">
+        function ShopBlock({shop_item}){
+            return(
+                <div class="shop_block col-3">
+                    <center>
+                        <h4>{shop_item.Header}</h4>
+                        <img src={shop_item.Path} alt="Error"/>
+                        <br />
+                        <span class="text-center">{shop_item.Price}💰</span>
+                        <button class="btn btn-danger mt-3 mb-3">Buy</button>
+                    </center>
+                </div>
+            );
+        }
+        function ShopAssortmentList({list}) {
+            return(
+                <div>
+                    {list.map((element, index) => (
+                        <ShopBlock shop_item={element} key={index} />
+                    ))}
+                </div>
+            );
+        }
+
+        ReactDOM.render(<ShopAssortmentList list={ShopAssortment}/>, document.getElementById('GamePanel_'));
+    </script>
+</body>
+</html>

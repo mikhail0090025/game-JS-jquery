@@ -1,0 +1,29 @@
+#GamePanel{
+    position: relative;
+    display: inline-block;
+    width: 50%;
+    height: 50%;
+    border: 3px solid black;
+    border-radius: 20px;
+    background-color: aqua;
+    padding: 20px;
+}
+.shop_block{
+    border: 3px solid brown;
+    border-radius: 6px;
+    background-color: aquamarine;
+}
+.shop_block:hover{
+    border: 3px solid #4b1515;
+    border-radius: 6px;
+    background-color: #c5ffec;
+    cursor: pointer;
+}
+.shop_block span{
+    font-size: 20px;
+    font-family: "Consolas";
+}
+.shop_block img{
+    width: 80%;
+    height: auto;
+}
