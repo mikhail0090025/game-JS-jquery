@@ -73,7 +73,7 @@ abstract class Cannon extends Protective{
 }
 class CommonCannon extends Cannon{
     constructor(pos: Point, hp: number, size: number, damage: number, fireRate: number, accuracy: number, workRadius: number) {
-        super(pos, hp, size, damage, fireRate, accuracy, workRadius);
+        super(pos, 200, 3, GlobalDamageFactor * 20, fireRate, accuracy, workRadius);
     }
     public DrawMe(): void {
         

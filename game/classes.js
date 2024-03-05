@@ -75,7 +75,7 @@ var Cannon = /** @class */ (function (_super) {
 var CommonCannon = /** @class */ (function (_super) {
     __extends(CommonCannon, _super);
     function CommonCannon(pos, hp, size, damage, fireRate, accuracy, workRadius) {
-        return _super.call(this, pos, hp, size, damage, fireRate, accuracy, workRadius) || this;
+        return _super.call(this, pos, 200, 3, GlobalDamageFactor * 20, fireRate, accuracy, workRadius) || this;
     }
     CommonCannon.prototype.DrawMe = function () {
     };
